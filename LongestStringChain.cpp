@@ -1,13 +1,9 @@
 class Solution {
 public:
-    vector<int> treelen;
-    map<int,vector<string>> m;
-    map<string,int> rNode;
+    unordered_map<int,vector<string>> m;
+    unordered_map<string,int> rNode;
     bool isPword(string word1,string word2)
     {
-        if(word1.size()!=word2.size()-1)
-            return false;
-        int s;
         bool flag=false;
         for(auto i:word1)
         {
@@ -62,6 +58,7 @@ public:
         return rNode[root];
     }
     int longestStrChain(vector<string>& words) {
+        vector<int> treelen;
         for(auto itr:words)
         {
             m[itr.length()].push_back(itr);
