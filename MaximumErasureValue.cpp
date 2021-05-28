@@ -2,14 +2,14 @@ class Solution {
 public:
     int maximumUniqueSubarray(vector<int>& nums) {
         int max=nums[0],sum=nums[0];
-        unordered_set<int> repeated;
-        repeated.insert(nums[0]);
+        vector<bool> repeated(10000,false);
+        repeated[nums[0]]=true;
         int left=0,right=1;
         while(right<nums.size())
         {
-            if(repeated.find(nums[right])==repeated.end())
+            if(repeated[nums[right]]==false)
             {
-                repeated.insert(nums[right]);
+                repeated[nums[right]]=true;;
                 sum+=nums[right];
                 right++;
             }
@@ -22,7 +22,7 @@ public:
                 while(nums[left]!=nums[right])
                 {
                     sum=sum-nums[left];
-                    repeated.erase(nums[left]);
+                    repeated[nums[left]]=false;
                     left++; 
                 }
                 left++;
